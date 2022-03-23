@@ -4,7 +4,8 @@ from utils import *
 from config import *
 from torch.multiprocessing import Pipe
 
-from tensorboardX import SummaryWriter
+# from tensorboardX import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
 
 import numpy as np
 
@@ -20,7 +21,7 @@ def main():
     env_type = default_config['EnvType']
 
     if env_type == 'mario':
-        env = BinarySpaceToDiscreteSpaceEnv(gym_super_mario_bros.make(env_id), COMPLEX_MOVEMENT)
+        env = JoypadSpace(gym_super_mario_bros.make(env_id), COMPLEX_MOVEMENT)
     elif env_type == 'atari':
         env = gym.make(env_id)
     else:
